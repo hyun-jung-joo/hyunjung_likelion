@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>주현정이 만든 계산기 입니다.</h1>
+    계산기 개발 중입니다.
+    <form action="">
+        <input type="text" name="num1">
+        <select name="operators">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" name="num2">
+        <input type="submit">
+        <br />
+
+        <!--template 언어 사용이 가능하다-->
+        결과값 : {{ result }}
+    </form>
+</body>
+
+</html>
