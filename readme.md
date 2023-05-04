@@ -1,4 +1,4 @@
-_likelion - 주현정 레포_
+**_ likelion - 주현정 레포 _**
 
 1. django_lecture1 : 강의 실습 코드
 2. django_liongram : 강의 실습 코드 2 (인스타그램 게시물, 댓글)
