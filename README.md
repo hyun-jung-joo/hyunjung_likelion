@@ -1,4 +1,4 @@
-# likelion - 주현정 레포
+# 🦁 likelion - 주현정 Repository
 
 ### Week4
 
