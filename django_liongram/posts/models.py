@@ -14,7 +14,7 @@ class Post(models.Model):
 # 댓글 class    
 class Comment(models.Model):
     content = models.TextField(verbose_name='내용')
-    created_at = models.DateTimeField(verbose_name='작성일')
+    created_at = models.DateTimeField(verbose_name='작성일', auto_now_add=True)
     post = models.ForeignKey(to='Post', on_delete=models.CASCADE) # fk 설정
     writer = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=True) # 사용자와 연결
     
