@@ -6,7 +6,8 @@ from .models import List
 
 # Create your views here.
 def listsHome(request):
-	return render(request, 'lists.html')
+    object_list = List.objects.all().order_by('id')
+    return render(request, 'lists.html', {'object_list':object_list})
 
 def create(request) : 
     print(f'request.method: {request.method}')
