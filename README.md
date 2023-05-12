@@ -8,3 +8,4 @@
 
 ### Week5
 1. django_liongram : 추가 내용 - 인스타그램 꾸미기
+2. django_myproject : model 추가 + admin 페이지 수정
