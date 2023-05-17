@@ -4,4 +4,16 @@
 
 {% block content %}
 <h1>Post 목록 삭제</h1>
+<!-- 삭제 버튼 생성-->
+<form action="" method="POST">
+    {% csrf_token %} <!-- post 이므로 csrf 해주기-->
+    <p>한번 삭제된 데이터는 복구가 불가능합니다.</p><br />
+    <p>그래도 삭제하시겠습니까? ID : {{ post.id }}</p><br />
+
+    <a href="{% url 'index' %}">돌아가기</a>
+    <input type="submit" value="삭제하기">
+</form>
+<hr>
+<!-- post_card.html 띄우기-->
+{% include 'mixin/posts/post_card.html' with detail=True %}
 {% endblock %}

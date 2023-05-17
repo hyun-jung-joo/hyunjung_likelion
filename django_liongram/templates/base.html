@@ -18,13 +18,18 @@
         <nav>
             <ul class="bottom-menu-group">
                 <li>
-                    <img src="{% static 'icons/home_outlined_black_36dp.svg'%}" alt="홈">
+                    <!-- 홈 버튼 생성-->
+                    <a href="{% url 'index' %}">
+                        <img src="{% static 'icons/home_outlined_black_36dp.svg'%}" alt="홈">
+                    </a>
                 </li>
                 <li>
                     <img src="{% static 'icons/search_outlined_black_36dp.svg'%}" alt="검색">
                 </li>
                 <li>
-                    <img src="{% static 'icons/add_box_outlined_black_36dp.svg'%}" alt="글쓰기">
+                    <a href="{% url 'posts:post-create' %}"> <!-- create로 이동 (post안의 url 의 name -> post-create)-->
+                        <img src="{% static 'icons/add_box_outlined_black_36dp.svg'%}" alt="글쓰기">
+                    </a>
                 </li>
                 <li>
                     <img src="{% static 'icons/favorite_outlined_black_36dp.svg'%}" alt="좋아요">

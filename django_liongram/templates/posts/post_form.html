@@ -4,4 +4,30 @@
 
 {% block content %}
 <h1>Post 작성 화면</h1>
+<!-- 폼의 액션 설정이 원래 create 였지만, 없애주어야 한다 ! : 이유는 update가 있을 수도 있기 때문에-->
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <!-- file (image) 보내려면 -> enctype 따로 설정 -->
+    <div>
+        <label for="id_image">이미지</label> <!-- 아래 input id : id_image -> label for 안에 넣어주기 -->
+        <!-- 수정 ) 이미지 있는지 확인 먼저 하고 / 현재 파일 출력하고 변경할 것인지 부분도 따로 출력 -->
+        {% if post.image %}
+        <p>현재 : <a href="{{ post.image.url }}">{{ post.image.name }}</a></p> <!-- 현재 파일 출력 : post.image.name-->
+        <p>변경 : <input type="file" name="image" accept="image/" id="id_image"></p> <!-- 변경 시 : 새로운 파일 받기-->
+        {% else %} <!-- 이미지가 없는 경우 -> 이미지 입력란을 부여해주기 -->
+        <input type="file" name="image" accept="image/" id="id_image">
+        {% endif %}
+    </div>
+    <div>
+        <label for="id_content">내용</label>
+        <!-- 수정 ) post 가 존재할 때 content 프린트-->
+        <textarea name="content" id="id_content" cols="30" rows="10">
+            {% if post %}
+            {{ post.content }}
+            {% endif %}
+        </textarea>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
 {% endblock %}
