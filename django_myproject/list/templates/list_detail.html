@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} detail {% endblock %}
+{% block css %}
+<link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
+{% endblock%}
+
+{% block content %}
+<header class="py-5">
+    <div class="container px-lg-5">
+        <h1>앨범 상세 페이지</h1>
+        <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+            <div>
+                {% include 'list_card.html' with detail=True %}
+            </div>
+        </div>
+        <a href="{% url 'lists' %}">돌아가기</a>
+    </div>
+</header>
+{% endblock %}

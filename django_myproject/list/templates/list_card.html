@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="col-lg-6 col-xxl-4 mb-5">
+    <div class="card bg-light border-0 h-100">
+        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4 mt-n4">
+                {% if album.image %}
+                <img src="{{ album.image.url }}" width="50px" height="50px" />
+                {% else %}
+                <img src="http://via.placeholder.com/50x50" alt="" />
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="fs-4 fw-bold">제목 : {{ album.title }}</h2>
+                <p class="mb-0">
+                    가수 : {{ album.singer }}
+                </p>
+            </div>
+            <div>
+                {% if not detail %}
+                <a href="{% url 'list-detail' album.id %}">자세히</a> |
+                {% endif %}
+                {% if request.user == album.writer %}
+                <a href="{% url 'list-update' album.id %}">수정하기</a> |
+                <a href="{% url 'list-delete' album.id %}">삭제하기</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,12 +12,49 @@
         <div class="p-4 p-lg-5 bg-light rounded-3 text-left">
 
             <h1>앨범을 추가하세요</h1>
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <table>
-                    {{ form.as_table }}
-                </table>
-                <input type="submit" value="새 글 작성하기">
+                <div>
+                    <label for="id_image"><b>앨범 이미지 : </b></label>
+                    {% if album.image %}
+                    <p>현재 : <a href="{{ album.image.url }}">{{ album.image.name }}</a></p>
+                    <p>변경 : <input type="file" name="image" accept="image/" id="id_image"></p>
+                    {% else %}
+                    <input type="file" name="image" accept="image/" id="id_image">
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_title"><b>앨범 제목 : </b></label>
+                    {% if album %}
+                    <p>현재 : {{ album.title }} </p>
+                    <p>변경 : <input type="text" name="title" id="id_title"></p>
+                    {% else %}
+                    <input type="text" name="title" id="id_title">
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_singer"><b>앨범 가수 : </b></label>
+                    {% if album %}
+                    <p>현재 : {{ album.singer }} </p>
+                    <p>변경 : <input type="text" name="singer" id="id_singer"></p>
+                    {% else %}
+                    <input type="text" name="singer" id="id_singer">
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="id_content"><b>앨범 내용 : </b></label>
+                    <textarea name="content" id="id_content" cols="30" rows="10">
+                        {% if album %}
+                        {{ album.content }}
+                        {% endif %}
+                    </textarea>
+                </div>
+
+                <br>
+                <input type="submit" value="새 앨범 추가">
             </form>
 
         </div>
