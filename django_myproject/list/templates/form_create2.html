@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} new album create _ form {% endblock %}
+{% block css %}
+<link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
+{% endblock%}
+
+{% block content %}
+<header class="py-5">
+    <div class="container px-lg-5">
+        <div class="p-4 p-lg-5 bg-light rounded-3 text-left">
+
+            <h1>앨범을 추가하세요 _form</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    {{ form.as_p }}
+                </div>
+
+                <br>
+                <input type="submit">
+            </form>
+
+        </div>
+    </div>
+</header>
+{% endblock %}

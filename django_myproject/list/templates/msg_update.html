@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} msg update {% endblock %}
+{% block css %}
+<link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
+{% endblock%}
+
+{% block content %}
+<header class="py-5">
+    <div class="container px-lg-5">
+        <div class="p-4 p-lg-5 bg-light rounded-3 text-left">
+
+            <h1>massage update</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div>
+                    {{ msg_form.as_p }}
+                </div>
+
+                <br>
+                <input type="submit" value="수정하기">
+            </form>
+
+        </div>
+    </div>
+</header>
+{% endblock %}

@@ -14,6 +14,21 @@
             <div>
                 {% include 'list_card.html' with detail=True %}
             </div>
+            <div>
+                <h4>댓글</h4>
+                <form method="POST" action="{% url 'create_msg' album.id %}">
+                    {% csrf_token %}
+                    {{ message_form }}
+                    <input type="submit">
+                </form>
+                <hr>
+                {% for message in album.message_set.all %}
+                <p>{{ album.writer }} : {{ message }}</p>
+                <a href="{% url 'update_msg' album.id message.id %}">수정</a>
+                <a href="{% url 'delete_msg' album.id message.id %}">삭제</a>
+                <hr>
+                {% endfor %}
+            </div>
         </div>
         <a href="{% url 'lists' %}">돌아가기</a>
     </div>

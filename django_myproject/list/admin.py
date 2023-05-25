@@ -26,3 +26,6 @@ class PostModelAdmin(admin.ModelAdmin):
                 item.singer=''
                 item.content=''
                 item.save() # 저장
+                
+                
+admin.site.register(Message)

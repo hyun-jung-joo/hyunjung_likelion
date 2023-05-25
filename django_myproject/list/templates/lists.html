@@ -2,30 +2,43 @@
 {% load static %}
 {% block title %} album lists {% endblock %}
 {% block css %}
-<link href="{% static 'css/styles2.css' %}" rel="stylesheet" />
+<link href="{% static 'css/styles_shop.css' %}" rel="stylesheet" />
 {% endblock%}
 {% block content %}
 <!-- Header-->
-<header class="py-5">
-    <div class="container px-lg-5">
-        <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-            <div class="m-4 m-lg-5">
-                <h1 class="display-5 fw-bold">Album Lists</h1>
-                <p class="fs-4">새로운 앨범 추가 하기</p>
-                <a class="btn btn-primary btn-lg" href="{% url 'list-create' %}">create</a>
-            </div>
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Album Lists</h1>
+            <p class="fs-4">새로운 앨범 추가 하기</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'list-create' %}">create</a>
         </div>
     </div>
 </header>
 <!-- Page Content-->
-<section class="pt-4">
-    <div class="container px-lg-5">
-        <div class="row gx-lg-5">
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <!-- Page Features-->
             {% for album in object_list %}
             {% include 'list_card.html' with detail=False %}
             {% endfor %}
         </div>
+        {% if object_list.has_previous %} <!-- 이전 페이지가 있다면 -->
+        <a href="?page=1">page 1</a>
+        <a href="?page={{ object_list.previous_page_number }}">이전페이지</a>
+        {% endif %}
+
+        <span>{{ object_list.number }}</span> <!-- 현재 페이지 넘버-->
+        <span> / </span>
+        <span>{{ object_list.paginator.num_pages }}</span> <!-- 총 페이지 수-->
+
+        {% if object_list.has_next %} <!-- 다음 페이지가 있다면 -->
+        <a href="?page={{ object_list.next_page_number }}">다음페이지</a>
+        <a href="?page={{ object_list.paginator.num_pages }}">last page</a>
+        {% endif %}
     </div>
 </section>
+
+
 {% endblock %}
