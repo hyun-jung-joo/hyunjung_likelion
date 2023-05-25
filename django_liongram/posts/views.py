@@ -2,7 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import ListView
+
 from .models import Post 
+from .forms import PostBaseForm, PostCreateForm, PostDetailForm
 
 def index(request):
     post_list = Post.objects.all().order_by('-created_at') # post의 전체 데이터 조회  / 최신꺼 맨 위로 -> orderby
@@ -27,6 +29,7 @@ def post_detail_view(request, id) :
         return redirect('index')
     context = {
         'post': post,
+        'form' : PostDetailForm(),
     }
     return render(request, 'posts/post_detail.html', context)
 
@@ -46,6 +49,29 @@ def post_create_view(request) :
             writer=request.user # 로그인(admin에서) 안한 상태이면 실행 안됨 -> admin에서 로그인 되어있을때는 실행되고 잘 뜬다 
         )
         return redirect('index')
+    
+    
+# form 전용 view
+def post_create_form_view(request) :
+    if request.method == 'GET' :
+        form = PostCreateForm()
+        return render(request, 'posts/post_form2.html', {'form' : form})
+    else :
+        form = PostCreateForm(request.POST , request.FILES)
+        print(form)
+        
+        if form.is_valid() : # 폼이 유효한지 먼저 검사 / 그 후에 데이터 유효성 검사
+            Post.objects.create( 
+                image=form.cleaned_data['image'], # cleaned data : 유효성 검사를 해줌 -> 단, form이 유효한지 검사부터 해야지 에러가 안남
+                content=form.cleaned_data['content'],
+                writer=request.user 
+            )
+        else : 
+            return redirect('posts:post-create')
+        return redirect('index')
+
+
+
 
 @login_required # 작성자만 가능한 행위 - 로그인 필수 
 def post_update_view(request, id) :

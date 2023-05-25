@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %} 글 작성 {% endblock %}
+
+{% block content %}
+<h1>Post 작성 화면 - Form 사용</h1>
+<!-- 폼의 액션 설정이 원래 create 였지만, 없애주어야 한다 ! : 이유는 update가 있을 수도 있기 때문에-->
+<form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <!-- file (image) 보내려면 -> enctype 따로 설정 -->
+    <div>
+        {{ form.as_p }} <!-- 랜더링 : as_p-->
+        <!-- 주석 : html 방식과 템플릿 방식 두 가지인데, html 방식으로 주석 처리를 하면 개발자도구에 노출이 됨 그러나, 템플릿 방식으로 작성하면 노출이 안됨 {# #}-->
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+{% endblock %}

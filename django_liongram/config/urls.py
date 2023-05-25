@@ -14,7 +14,9 @@ urlpatterns = [
     path('cbv/', class_view.as_view(), name='cbv'), #class -> .as_view()
     
     path('', index, name='index'),
-    path('posts/', include('posts.urls')), # post의 url
+    path('accounts/', include('accounts.urls', namespace='accounts')), # accounts의 url
+    path('posts/', include('posts.urls', namespace='posts')), # post의 url
+    
     
     path('__debug__/', include('debug_toolbar.urls')),
 ]
