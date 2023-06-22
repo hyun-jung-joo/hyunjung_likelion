@@ -8,7 +8,7 @@ from .models import List, Message
 
 # Create your views here.
 def listsHome(request):
-    object_list = List.objects.all().order_by('-created_at')
+    object_list = List.objects.all().order_by('-created_at', '-id')
     paginator = Paginator(object_list, 4) # 4개씩 paginator
     pagnum = request.GET.get('page') # page 번호 get
     object_list = paginator.get_page(pagnum) # albums에 해당 페이지 번호에 해당하는 앨범들 저장 (갱신)
@@ -36,7 +36,9 @@ def create_form(request) :
     if request.method == 'POST' or request.method == 'FILES':
         form = PostModelForm(request.POST, request.FILES)
         if form.is_valid() :
-            form.save()
+            unfinished = form.save(commit=False)
+            unfinished.writer = request.user
+            unfinished.save()
             return redirect('lists')
     else:
         form = PostModelForm
@@ -81,14 +83,13 @@ def update(request, id) :
 
 def update_form(request, id) : 
     album = get_object_or_404(List, id=id, writer=request.user)
-    
     if request.method == 'POST' or request.method == 'FILES':
         form = PostModelForm(request.POST, request.FILES, instance=album)
         if form.is_valid() :
             form.save()
             return redirect('lists')
     else :
-        form = PostModelForm()
+        form = PostModelForm(instance=album)
         context = {
             'form' : form,
             'id' : id
@@ -110,7 +111,8 @@ def create_msg(request, id) :
 
     if filled_form.is_valid():        
         finished_form = filled_form.save(commit=False)      
-        finished_form.post = get_object_or_404(List, pk=id)        
+        finished_form.post = get_object_or_404(List, pk=id)    
+        finished_form.writer = request.user    
         finished_form.save()   
     return redirect('list-detail', id)
 

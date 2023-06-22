@@ -1,0 +1,19 @@
+{% load static %}
+<link href="{% static 'css/signup.css' %}" rel="stylesheet" />
+
+<form method="POST" class="joinForm">
+    {% csrf_token %}
+    <h2>SIGN UP</h2>
+    <div class="textForm">
+        <input name="username" type="text" class="id" placeholder="ID">
+        </input>
+    </div>
+    <div class="textForm">
+        <input name="password" type="password" class="pw" placeholder="PWD">
+    </div>
+    <div class="textForm">
+        <input name="repeat" type="password" class="pw" placeholder="PWD CHECK">
+    </div>
+
+    <input type="submit" class="btn" value="가입하기" />
+</form>

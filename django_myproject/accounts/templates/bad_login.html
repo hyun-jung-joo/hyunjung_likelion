@@ -1,0 +1,10 @@
+{% load static %}
+<link href="{% static 'css/signup.css' %}" rel="stylesheet" />
+
+<form method="POST" class="joinForm">
+    {% csrf_token %}
+    <h2>LOGIN</h2>
+    <div>존재하지 않은 회원입니다. 다시 로그인 해주세요.</div>
+    <br>
+    <a href="{% url 'accounts:login' %}" class="btn">다시 로그인하기</a>
+</form>

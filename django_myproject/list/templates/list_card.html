@@ -12,7 +12,7 @@
             <div class="text-center">
                 <h5 class="fw-bolder">{{ album.title }}</h2>
                     <p class="mb-0">
-                        {{ album.singer }}
+                        Singer : {{ album.singer }}
                     </p>
                     <div class="d-flex justify-content-center small text-warning mb-2">
                         <div class="bi-star-fill"></div>
@@ -22,8 +22,9 @@
                         <div class="bi-star-fill"></div>
                     </div>
                     {% if detail %}
-                    {{ album.content }}
+                    Content : {{ album.content }}
                     {% endif %}
+                    <div>Writer : {{ album.writer }}</div>
             </div>
         </div>
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
@@ -36,8 +37,8 @@
 
         <div class="text-center">
             {% if request.user == album.writer %}
-            <a href="{% url 'list-update' album.id %}">수정하기</a> |
-            <a href="{% url 'list-delete' album.id %}">삭제하기</a>
+            <a href="{% url 'list-update' album.id %}">UPDATE</a> |
+            <a href="{% url 'list-delete' album.id %}">DELETE</a>
             {% endif %}
         </div>
     </div>
