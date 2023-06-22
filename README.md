@@ -16,3 +16,6 @@
 ### Week7
 1. django_liongram : form , login, logout, signup 부분 추가
 2. django_myproject : 이미지 사용, 댓글 crud, paginator 부분 추가
+
+### Week9
+1. django_myproject : 회원가입, 로그인, 로그아웃 구현 + 사용자별 권한 지정 (작성자만 수정 또는 삭제 가능하도록) 
