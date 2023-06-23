@@ -3,7 +3,13 @@
 <div class="col mb-5">
     <div class="card h-100">
         {% if album.image %}
+        {% if detail %}
+        <div text-align="center">
+            <img src="{{ album.image.url }}" height="500px" width="500px" />
+        </div>
+        {% else %}
         <img src="{{ album.image.url }}" class="card-img-top" />
+        {% endif %}
         {% else %}
         <img src="http://via.placeholder.com/50x50" alt="" />
         {% endif %}
@@ -30,7 +36,7 @@
         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div class="text-center">
                 {% if not detail %}
-                <a class="btn btn-outline-dark mt-auto" href="{% url 'list-detail' album.id %}">자세히</a>
+                <a class="btn btn-outline-dark mt-auto" href="{% url 'list-detail' album.id %}">DETAIL</a>
                 {% endif %}
             </div>
         </div>

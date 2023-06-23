@@ -7,7 +7,7 @@
         <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
             <div>{% include 'list_card.html' with detail=True %}</div>
             <div>
-                <h4>댓글</h4>
+                <h4>Comments</h4>
                 {% if user.is_authenticated %}
                 <form method="POST" action="{% url 'create_msg' album.id %}">
                     {% csrf_token %} {{ message_form }}
@@ -22,10 +22,10 @@
                 <a href="{% url 'delete_msg' album.id message.id %}">DELETE</a>
                 {% endif %}
                 <hr />
-                {% endfor %} {% else %} 로그인 후 사용해주세요 ! {% endif %}
+                {% endfor %} {% else %} Please log in and use it! {% endif %}
             </div>
         </div>
-        <a href="{% url 'lists' %}">돌아가기</a>
+        <a href="{% url 'lists' %}">RETURN</a>
     </div>
 </header>
 {% endblock %}
