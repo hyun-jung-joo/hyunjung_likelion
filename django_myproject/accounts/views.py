@@ -6,8 +6,8 @@ def signup(request) :
     if request.method == 'POST' :
         if request.POST['password'] == request.POST['repeat'] :
             new_user = User.objects.create_user(username=request.POST['username'], password=request.POST['password'])
-            auth.login(request, new_user)
-            print('회원가입 성공')
+            auth.login(request, new_user,backend='django.contrib.auth.backends.ModelBackend')
+            print('회원가입 성공') 
             return redirect('index')
     return render(request, 'signup.html')
 
@@ -18,7 +18,7 @@ def login(request) :
         user = auth.authenticate(request, username=username, password=password)
     
         if user is not None :
-            auth.login(request, user)
+            auth.login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             print('로그인 성공')
             return redirect('index')
         else :
