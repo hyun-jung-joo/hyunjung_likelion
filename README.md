@@ -19,3 +19,7 @@
 
 ### Week9
 1. django_myproject : 회원가입, 로그인, 로그아웃 구현 + 사용자별 권한 지정 (작성자만 수정 또는 삭제 가능하도록) 
+
+### Week10
+1. django_myproject : 소셜 로그인 + 배포
+2. http://hyunnnny.pythonanywhere.com : 배포 링크
